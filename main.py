@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtSvg import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
-from util.fetch import weather
+from util.fetch import weather, forecast
 
 app = QApplication(sys.argv)
 window = QMainWindow()
@@ -38,6 +38,26 @@ img.setPixmap(QPixmap(f"./assets/{weather(location)['current']['condition']['tex
 img.move(600, 150) 
 img.setFixedHeight(200)
 img.setFixedWidth(200)
+
+minTempText = QLabel(f"<p>Min Temp<br> &nbsp;&nbsp;&nbsp;{str(forecast(location)['forecast']['forecastday'][0]['day']['mintemp_c']).split('.')[0]}°C</p>", parent=window)
+minTempText.setFont(QFont("Times", 15))
+minTempText.move(125, 350)
+minTempText.setFixedHeight(100)
+
+maxTempText = QLabel(f"<p>Max Temp<br> &nbsp;&nbsp;&nbsp;{str(forecast(location)['forecast']['forecastday'][0]['day']['maxtemp_c']).split('.')[0]}°C</p>", parent=window)
+maxTempText.setFont(QFont("Times", 15))
+maxTempText.move(295, 350)
+maxTempText.setFixedHeight(100)
+
+humidityText = QLabel(f"<p>Humidity<br> &nbsp;&nbsp;{forecast(location)['forecast']['forecastday'][0]['day']['avghumidity']}%</p>", parent=window)
+humidityText.setFont(QFont("Times", 15))
+humidityText.move(475, 350)
+humidityText.setFixedHeight(100)
+
+windText = QLabel(f"<p>&nbsp;&nbsp;Wind<br> {forecast(location)['forecast']['forecastday'][0]['day']['maxwind_kph']}km/h</p>", parent=window)
+windText.setFont(QFont("Times", 15))
+windText.move(625, 350)
+windText.setFixedHeight(100)
 
 window.show()
 sys.exit(app.exec())
