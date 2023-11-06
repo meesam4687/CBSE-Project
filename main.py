@@ -33,8 +33,25 @@ temp.setFont(QFont("Times", 20))
 temp.move(82, 250)
 temp.setStyleSheet("color: black")
 
+curCondition = weather(location)['current']['condition']['text']
+clears = ['Clear', 'Sunny']
+cloudys = ['Cloudy', 'Overcast']
+partlyCloudys = ['Partly cloudy', 'Mist', 'Fog', 'Freezing fog']
+rains = ['Patchy rain possible', 'Patchy light rain', 'Light rain', 'Moderate rain at times', 'Moderate rain', 'Heavy rain at times', 'Heavy rain', 'Light freezing rain', 'Moderate or heavy freezing rain', 'Light rain shower', 'Moderate or heavy rain shower', 'Torrential rain shower', 'Light rain shower', 'Moderate or heavy rain shower', 'Torrential rain shower', 'Light sleet showers', 'Moderate or heavy sleet showers', 'Light snow showers', 'Moderate or heavy snow showers', 'Light showers of ice pellets', 'Moderate or heavy showers of ice pellets', 'Patchy light rain with thunder', 'Moderate or heavy rain with thunder', 'Patchy light snow with thunder', 'Moderate or heavy snow with thunder']
+snows = ['Patchy light snow', 'Light snow', 'Patchy moderate snow', 'Moderate snow', 'Patchy heavy snow', 'Heavy snow', 'Ice pellets', 'Light snow showers', 'Moderate or heavy snow showers', 'Light showers of ice pellets', 'Moderate or heavy showers of ice pellets', 'Patchy light snow with thunder', 'Moderate or heavy snow with thunder']
+if curCondition in clears:
+    cImage = "clear"
+if curCondition in cloudys:
+    cImage = "cloudy"
+if curCondition in partlyCloudys:
+    cImage = "partlycloudy"
+if curCondition in rains:
+    cImage = "rain"
+if curCondition in snows:
+    cImage = "snow"
+
 img = QLabel(parent=window)
-img.setPixmap(QPixmap(f"./assets/{weather(location)['current']['condition']['text']}.png"))
+img.setPixmap(QPixmap(f"./assets/{cImage}.png"))
 img.move(600, 150) 
 img.setFixedHeight(200)
 img.setFixedWidth(200)
