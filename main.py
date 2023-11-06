@@ -5,10 +5,10 @@ from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 from util.fetch import weather, forecast
 
+location = input("Enter location> ")
+
 app = QApplication(sys.argv)
 window = QMainWindow()
-
-location = "Srinagar"
 
 window.setWindowTitle(f"Weather in {location}")
 window.setWindowIcon(QIcon("./assets/wLogo.png"))
@@ -27,6 +27,7 @@ status = QLabel(f"<p>{weather(location)['current']['condition']['text']}</p>", p
 status.setFont(QFont("Times", 30))
 status.move(80, 180)
 status.setFixedHeight(100)
+status.setFixedWidth(300)
 
 temp = QLabel(f"<p>{str(weather(location)['current']['temp_c']).split('.')[0]}°C</p>", parent=window)
 temp.setFont(QFont("Times", 20))
