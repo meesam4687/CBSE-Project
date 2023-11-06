@@ -16,7 +16,7 @@ window.setFixedSize(850, 500)
 
 central_frame = QFrame(window)
 central_frame.setFixedSize(850, 500)
-central_frame.setStyleSheet("background :#6ba2c2;")
+central_frame.setStyleSheet("background :#4568a1;")
 
 txt = QLabel(f"<h1>Weather in {location}</h1>", parent=window)
 txt.setFixedWidth(850)
